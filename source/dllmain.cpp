@@ -402,135 +402,80 @@ void PerformHexEdits3() {
 //=======================================================================================================================================================================================
 
 //=======================================================================================================================================================================================
-// chip - 4: fov edit
+// chip - 4: fov
 
-
-const std::vector<BYTE> commonHexEdit5 = { 0x00, 0x00, 0x70, 0xC2, 0x34, 0x33, 0x93, 0x3F, 0x9F, 0xF4, 0xE9, 0x3F, 0xE0, 0x2E, 0x65, 0x42 };
-
-struct HexEdit5 {
-    std::vector<BYTE> modified5;
-    size_t offset5;
-};
-
-// index for hex edits for fov
-
-HexEdit5 CreateHexEditFromFOV(int FOVIndex) {
-    HexEdit5 edit5;
-
-    switch (FOVIndex) {
-    case 1:
-        edit5.modified5 = { 0x00, 0x00, 0x70, 0xC2, 0x34, 0x33, 0x93, 0x3F, 0x9F, 0xF4, 0xE9, 0x3F, 0x00, 0x00, 0x70, 0x42 };                 // 60
-        edit5.offset5 = 0;
-        break;
-    case 2:
-        edit5.modified5 = { 0x00, 0x00, 0x70, 0xC2, 0x34, 0x33, 0x93, 0x3F, 0x9F, 0xF4, 0xE9, 0x3F, 0x00, 0x00, 0x8C, 0x42 };                 // 70
-        edit5.offset5 = 0;
-        break;
-    case 3:
-        edit5.modified5 = { 0x00, 0x00, 0x70, 0xC2, 0x34, 0x33, 0x93, 0x3F, 0x9F, 0xF4, 0xE9, 0x3F, 0x00, 0x00, 0xA0, 0x42 };                // 80
-        edit5.offset5 = 0;
-        break;
-    case 4:
-        edit5.modified5 = { 0x00, 0x00, 0x70, 0xC2, 0x34, 0x33, 0x93, 0x3F, 0x9F, 0xF4, 0xE9, 0x3F, 0x00, 0x00, 0xB4, 0x42 };                // 90
-        edit5.offset5 = 0;
-        break;
-    case 5:
-        edit5.modified5 = { 0x00, 0x00, 0x70, 0xC2, 0x34, 0x33, 0x93, 0x3F, 0x9F, 0xF4, 0xE9, 0x3F, 0x00, 0x00, 0xC8, 0x42 };                // 100
-        edit5.offset5 = 0;
-        break;
-    default:
-        DX_ERROR("Invalid FOV index.")
-
-            break;
-    }
-
-    return edit5;
+// Function to read the float value from the INI file and convert it to float
+float ReadFloatFromINI(const char* section, const char* key, const char* iniPath) {
+    int intValue = GetPrivateProfileIntA(section, key, 0, iniPath);
+    return static_cast<float>(intValue);
 }
 
-void PerformHexEdit5(LPBYTE lpAddress, DWORD moduleSize, const HexEdit5& edit5) {
-    for (DWORD i = 0; i < moduleSize - edit5.modified5.size(); ++i) {
-        if (memcmp(lpAddress + i, commonHexEdit5.data(), commonHexEdit5.size()) == 0) {
-            DX_PRINT("Pattern found in memory 5.")
-
-                LPVOID lpAddressToWrite = lpAddress + i + edit5.offset5;
-            SIZE_T numberOfBytesWritten;
-            HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, GetCurrentProcessId());
-            if (hProcess == NULL) {
-                DX_ERROR("Failed to open process for writing memory.")
-                    return;
-            }
-
-            // Change page protection to allow writing
-            DWORD oldProtection;
-            if (!VirtualProtectEx(hProcess, lpAddressToWrite, edit5.modified5.size(), PAGE_EXECUTE_READWRITE, &oldProtection)) {
-                DX_ERROR("Failed to change page protection.")
-                 CloseHandle(hProcess);
-                return;
-            }
-
-            BOOL result = WriteProcessMemory(hProcess, lpAddressToWrite, edit5.modified5.data(), edit5.modified5.size(), &numberOfBytesWritten);
-            CloseHandle(hProcess);
-            if (!result || numberOfBytesWritten != edit5.modified5.size()) {
-                DX_ERROR("Failed to write memory 5.")
-                    return;
-            }
-
-            // Restore original page protection
-            DWORD dummy;
-            VirtualProtectEx(hProcess, lpAddressToWrite, edit5.modified5.size(), oldProtection, &dummy);
-
-            DX_ERROR("Hex edited successfully 5.")
-                return;
-        }
-    }
-    DX_PRINT("Pattern not found in memory.")
-}
-
-
-void PerformHexEdits5() {
-    HMODULE hModule = GetModuleHandle(NULL);
-    if (hModule == NULL) {
-        DX_ERROR("Failed to get module handle 5.")
-            return;
-    }
-
-    // Get the module information
-    LPBYTE lpAddress = reinterpret_cast<LPBYTE>(hModule);
-    DWORD moduleSize = 0;
-    TCHAR szFileName[MAX_PATH];
-    if (GetModuleFileNameEx(GetCurrentProcess(), hModule, szFileName, MAX_PATH)) {
-        moduleSize = GetFileSize(szFileName, NULL);
-    }
-    if (moduleSize == 0) {
-        DX_ERROR("Failed to get module information 5.")
-            return;
-    }
-
-    // ini
+// Function to perform the hex edit
+void PerformHexEdit4() {
+    // INI file path
     char path[MAX_PATH];
     HMODULE hm = NULL;
-    GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (LPCSTR)&Direct3DCreate9, &hm);
-    GetModuleFileNameA(hm, path, sizeof(path));
-    strcpy(strrchr(path, '\\'), "\\d3d9.ini");
+    if (!GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (LPCSTR)&Direct3DCreate9, &hm)) {
+        DX_ERROR("Failed to get module handle.")
+            return;
+    }
+    if (!GetModuleFileNameA(hm, path, sizeof(path))) {
+        DX_ERROR("Failed to get module file name.")
+            return;
+    }
+    char* lastBackslash = strrchr(path, '\\');
+    if (lastBackslash == NULL) {
+        DX_ERROR("Invalid module file path.")
+            return;
+    }
+    strcpy(lastBackslash + 1, "d3d9.ini");
 
-    // Read resolution index from the INI file
-    int FOVIndex = GetPrivateProfileInt("FOV", "fov", 0, path);
-    if (FOVIndex == 0) {
-        DX_ERROR("Failed to read FOV index from INI file.")
+    // Read the new float value from the INI file
+    float floatNewValue = ReadFloatFromINI("FOV", "fov", path);
+    if (floatNewValue == 0) {
+        DX_ERROR("Failed to read float value from INI file.")
             return;
     }
 
-    HexEdit5 edit5 = CreateHexEditFromFOV(FOVIndex);
-    if (edit5.modified5.empty()) {
-         DX_ERROR("Failed to create hex edit for FOV index: ")
+    // Define the offset to write the new float value
+    DWORD offset = 0x0084834C;
+
+    // Open the process to write memory
+    HANDLE hProcess = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION, FALSE, GetCurrentProcessId());
+    if (hProcess == NULL) {
+        DX_ERROR("Failed to open process.")
             return;
     }
 
-    PerformHexEdit5(lpAddress, moduleSize, edit5);
+    // Change memory protection to allow writing
+    DWORD oldProtect;
+    if (!VirtualProtectEx(hProcess, reinterpret_cast<LPVOID>(offset), sizeof(float), PAGE_EXECUTE_READWRITE, &oldProtect)) {
+        DX_ERROR("Failed to change memory protection.")
+            CloseHandle(hProcess);
+        return;
+    }
+
+    // Write the new value to memory
+    if (!WriteProcessMemory(hProcess, reinterpret_cast<LPVOID>(offset), &floatNewValue, sizeof(float), NULL)) {
+        DX_ERROR("Failed to write memory.")
+            CloseHandle(hProcess);
+        return;
+    }
+
+    // Restore original protection
+    DWORD dummy;
+    if (!VirtualProtectEx(hProcess, reinterpret_cast<LPVOID>(offset), sizeof(float), oldProtect, &dummy)) {
+        DX_ERROR("Failed to restore memory protection.")
+            CloseHandle(hProcess);
+        return;
+    }
+
+    DX_PRINT("Value successfully updated.")
+
+        CloseHandle(hProcess);
 }
 
-
-// chip - 4: fov edit
+// chip - 4: fov
 //=======================================================================================================================================================================================
 
 //=======================================================================================================================================================================================
@@ -1541,16 +1486,16 @@ bool WINAPI DllMain(HMODULE hModule, DWORD dwReason, LPVOID lpReserved)
         //chip
 
 
-           PerformHexEdits();
+        PerformHexEdits();
 
-           PerformHexEdits2();
+        PerformHexEdits2();
 
-           PerformHexEdits3();
+        PerformHexEdits3();
 
-           PerformHexEdits5();
+        PerformHexEdit4();
 
-           PerformHexEdits6();
-          
+        PerformHexEdits6();
+
 
         //chip
         //========================================================================================================================
