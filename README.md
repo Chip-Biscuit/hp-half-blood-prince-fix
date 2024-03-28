@@ -18,7 +18,7 @@ Default aspect ratio is 0 which is (16:9)
 
 Default for FPS cap is 60 you can change it as you like or uncap with 0 
 
-Default for FOV is 2 you can change it as you like or turn off with 0 to have origional game FOV
+Default for FOV is 0 you can change it as you like or turn off with 0 to have origional game FOV (57.295776)
 
 if you would like to leave feedback or submit a bug please use the form provided:
 
