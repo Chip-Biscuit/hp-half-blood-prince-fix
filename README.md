@@ -11,7 +11,7 @@ simply put the d3d9.dll and d3d9.ini and fps.dll into your game folder next to t
 
 you can edit settings in d3d9.ini 
 
-Default for FPS uncap is 280 which is the max you can cap it down to whatever you like in the ini. 
+Default for FPS uncap is 280 which is the max you can cap it down to whatever you like in the ini. YOU NEED TO DISABLE VSYNC FOR THE FPS TO BE UNCAPPED.
 
 Default for resolution is 2 (1920 x 1080)
 
