@@ -7,7 +7,7 @@ void MonitorMemory() {
     float floatNewValue = 280.0f;
 
     // Define the offset to write the new float value
-    DWORD offset = 0x008A4474; // Example memory address, replace with your desired address
+    DWORD offset = 0x008A4474; 
 
     // Get handle to the current process
     HANDLE hProcess = GetCurrentProcess();
@@ -58,8 +58,6 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved) {
         break;
     case DLL_PROCESS_DETACH:
         // Cleanup code when DLL is detached from a process (i.e., when the game closes)
-        // You can add your cleanup code here, such as unhooking from the game process or freeing resources
-        // In this example, we don't need to do anything since the monitoring thread is terminated automatically when the process exits
         break;
     }
     return TRUE;
