@@ -535,6 +535,94 @@ void PerformHexEdits6() {
 // chip - 6: aspect ratio fix above 16:9
 //=======================================================================================================================================================================================
 
+//=======================================================================================================================================================================================
+ 
+ //chip
+// Function to perform the hex edit fps 
+void PerformHexEdit7(LPBYTE lpAddress, DWORD moduleSize) {
+    // Define the patterns to search for and their corresponding new values
+    struct HexEdit {
+        std::vector<BYTE> pattern;
+        std::vector<BYTE> newValue;
+        size_t offset; // Offset of the byte to modify within the pattern
+    };
+
+    // Define the edits
+    std::vector<HexEdit> edits = {
+        
+        { { 0x95, 0xBA, 0x00, 0x02, 0x00, 0x00, 0x00, 0xE8, 0x74 }, { 0x01 }, 3 }
+    };
+
+    // Iterate through the edits
+    for (const auto& edit : edits) {
+        // Search for the pattern in memory
+        for (DWORD i = 0; i < moduleSize - edit.pattern.size(); ++i) {
+            if (memcmp(lpAddress + i, edit.pattern.data(), edit.pattern.size()) == 0) {
+                // Pattern found in memory
+                std::cout << "Pattern found in memory." << std::endl;
+
+                // Modify memory
+                LPVOID lpAddressToWrite = lpAddress + i + edit.offset;
+                DWORD oldProtect;
+
+                // Change memory protection to allow writing
+                if (!VirtualProtect(lpAddressToWrite, edit.newValue.size(), PAGE_EXECUTE_READWRITE, &oldProtect)) {
+                    std::cerr << "Failed to change memory protection." << std::endl;
+                    return;
+                }
+
+                SIZE_T numberOfBytesWritten;
+                BOOL result = WriteProcessMemory(GetCurrentProcess(), lpAddressToWrite, edit.newValue.data(), edit.newValue.size(), &numberOfBytesWritten);
+                if (!result || numberOfBytesWritten != edit.newValue.size()) {
+                    std::cerr << "Failed to write memory." << std::endl;
+                    return;
+                }
+
+                // Restore the original memory protection
+                if (!VirtualProtect(lpAddressToWrite, edit.newValue.size(), oldProtect, &oldProtect)) {
+                    std::cerr << "Failed to restore memory protection." << std::endl;
+                    return;
+                }
+
+                std::cout << "Hex edited successfully." << std::endl;
+                break;
+            }
+        }
+    }
+}
+
+// Function to perform the hex edits
+void PerformHexEdits7() {
+    // Get the handle to the current module
+    HMODULE hModule = GetModuleHandle(NULL);
+    if (hModule == NULL) {
+        std::cerr << "Failed to get module handle." << std::endl;
+        return;
+    }
+
+    // Get the module information
+    LPBYTE lpAddress = reinterpret_cast<LPBYTE>(hModule);
+    DWORD moduleSize = 0; // Placeholder for module size
+    TCHAR szFileName[MAX_PATH];
+    if (GetModuleFileNameEx(GetCurrentProcess(), hModule, szFileName, MAX_PATH)) {
+        HANDLE hFile = CreateFile(szFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+        if (hFile != INVALID_HANDLE_VALUE) {
+            moduleSize = GetFileSize(hFile, NULL);
+            CloseHandle(hFile);
+        }
+    }
+    if (moduleSize == 0) {
+        std::cerr << "Failed to get module information." << std::endl;
+        return;
+    }
+
+    // Perform the hex edit
+    PerformHexEdit7(lpAddress, moduleSize);
+}
+//chip
+
+//=======================================================================================================================================================================================
+
 void HookModule(HMODULE hmod);
 
 class FrameLimiter
@@ -1430,6 +1518,10 @@ bool WINAPI DllMain(HMODULE hModule, DWORD dwReason, LPVOID lpReserved)
         PerformHexEdit4();
 
         PerformHexEdits6();
+
+        PerformHexEdits7();
+
+        HMODULE hFpsDll = LoadLibraryA("fps.dll");
 
 
         //chip
