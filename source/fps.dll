@@ -38,7 +38,7 @@ void MonitorMemory() {
                // MessageBox(NULL, L"Failed to write memory.", L"Error", MB_OK | MB_ICONERROR);
                 break;
             }
-           // MessageBox(NULL, L"Value frozen at 0.0f.", L"Info", MB_OK | MB_ICONINFORMATION);
+           // MessageBox(NULL, L"Value frozen at 280.0f.", L"Info", MB_OK | MB_ICONINFORMATION);
         }
 
         // Adjust the sleep duration as needed
