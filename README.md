@@ -14,15 +14,13 @@ For aspect ratio in this game you need to set two settings if you go above 16:10
 
 Default aspect ratio is 0 which is (16:9)   
 
-Default for FOV is 0 you can change it as you like or turn off with 0 to have origional game FOV (57.295776)
+The game will start with the origional FOV and you can toggle it to the FOV you select here by pressing the hotkey "9" on your keyboard and it will toggle between origional and the value in the ini that you choose to zoom out to.
 
 if you would like to leave feedback or submit a bug please use the form provided:
 
 https://docs.google.com/forms/d/e/1FAIpQLSc6MLN22hwBFt9-oCHEdx3wGVzis4HCzEpBMWXC5Oc1KTTupg/viewform?usp=sharing
 
 brought to you by Fix Enhancers 
-
-[this fix as it stands is a beta and the game is still being looked into so future updates will be posted so keep an eye out] 
 
 Team: 
 
