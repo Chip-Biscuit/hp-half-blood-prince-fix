@@ -25,8 +25,6 @@ https://docs.google.com/forms/d/e/1FAIpQLSc6MLN22hwBFt9-oCHEdx3wGVzis4HCzEpBMWXC
 
 brought to you by Fix Enhancers 
 
-[this fix as it stands is a beta and the game is still being looked into so future updates will be posted so keep an eye out] 
-
 credit to Elisha Riedlinger for the base wrapper and 13 AG.
 
 Team: 
