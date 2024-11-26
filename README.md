@@ -1,5 +1,10 @@
 # hp-half-blood-prince-fix
 
+
+This is the Harry Potter and the Half Blood Prince d3d9 wrapper which is based from 13AG d3d9.dll wrapper
+
+https://github.com/ThirteenAG/d3d9-wrapper
+
 Make sure you launch the game one time before you use this fix, go to new game or continue game, go to video and make sure your resolution is 640 x 480 for the d3d9.dll to work 
 
 simply go to releases download hphbpfix.zip put the d3d9.dll and d3d9.ini and fps.dll into your game folder next to the game exe and your good to go 
@@ -14,7 +19,7 @@ For aspect ratio in this game you need to set two settings if you go above 16:10
 
 Default aspect ratio is 0 which is (16:9)   
 
-The game will start with the origional FOV and you can toggle it to the FOV you select here by pressing the hotkey "9" on your keyboard (not the numpad) and it will toggle between origional and the value in the ini that you choose to zoom out to.
+Default for FOV is 0 you can change it as you like or turn off with 0 to have origional game FOV (57.295776)
 
 if you would like to leave feedback or submit a bug please use the form provided:
 
@@ -22,8 +27,8 @@ https://docs.google.com/forms/d/e/1FAIpQLSc6MLN22hwBFt9-oCHEdx3wGVzis4HCzEpBMWXC
 
 brought to you by Fix Enhancers 
 
+[this fix as it stands is a beta and the game is still being looked into so future updates will be posted so keep an eye out] 
+
 Team: 
 
 Chip, JokerAlex21, Blankname.
-
-credit to Elisha Riedlinger for the base wrapper and 13 AG.
