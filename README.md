@@ -3,6 +3,8 @@
 
 This is the Harry Potter and the Half Blood Prince d3d9 wrapper.
 
+IMPORTANT READ THE READ ME FILE INCLUDED WITH THE DOWNLOAD
+
 Make sure you launch the game one time before you use this fix, go to new game or continue game, go to video and make sure your resolution is 640 x 480 for the d3d9.dll to work 
 
 simply go to releases download hphbpfix.zip put the d3d9.dll and d3d9.ini and fps.dll into your game folder next to the game exe and your good to go 
