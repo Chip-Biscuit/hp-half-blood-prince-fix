@@ -23,7 +23,7 @@ The game will start with the origional FOV and you can toggle it to the FOV you 
 
 If you have any issues please go to discord for help 
 
-https://discord.gg/pZwkHrTF8X
+https://discord.gg/eVJ7sQH7Cc
 
 brought to you by Fix Enhancers 
 
