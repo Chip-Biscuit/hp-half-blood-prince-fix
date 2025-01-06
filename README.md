@@ -7,6 +7,16 @@ IMPORTANT READ THE READ ME FILE INCLUDED WITH THE DOWNLOAD
 
 Make sure you launch the game one time before you use this fix, go to new game or continue game, go to video and make sure your resolution is 640 x 480 for the d3d9.dll to work 
 
+special note:
+
+If you are a user where the FPS does not work correctly and is stuttery when putting in a cap or uncapping in the d3d9 ini file then you must do the following. 
+
+Set the d3d9 ini file FPS cap to 0 so it is uncapped, then open your graphics control panel such as Nvidia Control Panel, go to Manage 3D options, Program settings, select HP6 exe file from drop down or brows and find it, set Low Latency Mode to Ultra, FPS to 278 and V-Sync to Fast then click apply. 
+
+Boot up the game and the FPS should now be fixed. This also fixes the mouse flying around the screen randomly.
+
+If you are using a controller outside of Xbox then add the HP6 exe file to Steam as a non Steam game and play the game via steam. This will allow any controller to be able to function with the game.
+
 simply go to releases download hphbpfix.zip put the d3d9.dll and d3d9.ini and fps.dll into your game folder next to the game exe and your good to go 
 
 you can edit settings in d3d9.ini 
