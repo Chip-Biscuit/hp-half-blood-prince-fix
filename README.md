@@ -1,4 +1,4 @@
-# Harry-Potter-and-the-Half-Blood-Prince-Fix
+# Harry-Potter-and-the-Half-Blood-Prince-PC-Fix
 
 
 This is the Harry Potter and the Half Blood Prince d3d9 wrapper.
