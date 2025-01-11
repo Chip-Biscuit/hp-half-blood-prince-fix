@@ -39,6 +39,8 @@ https://discord.gg/eVJ7sQH7Cc
 
 brought to you by Fix Enhancers 
 
+https://fixenhancers.wixsite.com/fix-enhancers
+
 credit to Elisha Riedlinger for the base wrapper and 13 AG.
 
 Team: 
