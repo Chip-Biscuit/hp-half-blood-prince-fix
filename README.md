@@ -1,48 +1,40 @@
-# Harry-Potter-and-the-Half-Blood-Prince-PC-Fix
+# Harry Potter and the Half Blood Prince PC Fix
 
+# Requirements before using fix
+IMPORTANT READ THE READ ME FILE INCLUDED WITH THE DOWNLOAD BEFORE USING THE FIX.
 
-This is the Harry Potter and the Half Blood Prince d3d9 wrapper.
+Watch the official fix guide video here on how to install the game and use the fix - https://www.youtube.com/watch?v=DTkDNoQrxhU&list=PLIkBjPwB07CTqLWUmpo1Pel6p7Pc4RlOZ&index=9&t=2s 
 
-IMPORTANT READ THE READ ME FILE INCLUDED WITH THE DOWNLOAD
+# Instructions
+You must launch the game once before you use this fix. You will either need to start a new game or continue a save file and go to the video settings and make sure your resolution is 640 x 480 in order for the d3d9.dll file to work.
 
-Make sure you launch the game one time before you use this fix, go to new game or continue game, go to video and make sure your resolution is 640 x 480 for the d3d9.dll to work 
+Go to releases, download the Harry Potter and the Half Blood Prince Fix that fits the requirements you need, then extract the d3d9.dll, d3d9.ini and the fps.dll files into your game folder next to the hp6.exe file and you are good to go! You can edit the settings you wish to use in the d3d9.ini file.
 
-special note:
+# Other Important Information
+If you are a user where the FPS does not work correctly and is stuttery when putting in a cap or uncapping in the d3d9 ini file, then you must do the following.
 
-If you are a user where the FPS does not work correctly and is stuttery when putting in a cap or uncapping in the d3d9 ini file then you must do the following. 
-
-Set the d3d9 ini file FPS cap to 0 so it is uncapped, then open your graphics control panel such as Nvidia Control Panel, go to Manage 3D options, Program settings, select HP6 exe file from drop down or brows and find it, set Low Latency Mode to Ultra, FPS to 278 and V-Sync to Fast then click apply. 
+Set the d3d9 ini file FPS cap to 0 so it is uncapped, then open your graphics control panel such as Nvidia Control Panel, go to Manage 3D options, Program settings, select HP6.exe file from drop down or browse and find it, set Low Latency Mode to Ultra, FPS to 278 and V-Sync to Fast then click apply.
 
 Boot up the game and the FPS should now be fixed. This also fixes the mouse flying around the screen randomly.
 
-If you are using a controller outside of Xbox then add the HP6 exe file to Steam as a non Steam game and play the game via steam. This will allow any controller to be able to function with the game.
+# Resolution/Aspect Ratio
+The default for resolution is set to (1920 x 1080). Put the resolution that you wish to use in both Width and Height. If you boot up the game after setting the resolution you want in the d3d9.ini file and the resolution has not changed automatically then go to the video options menu in game and select your resolution from in there.
 
-simply go to releases download hphbpfix.zip put the d3d9.dll and d3d9.ini and fps.dll into your game folder next to the game exe and your good to go 
+The default for aspect ratio is (0) which is (16:9). Choose the aspect ratio that is correct for you from the selection within the d3d9.ini file and replace (0) with the number correct for you.
 
-you can edit settings in d3d9.ini 
+# FPS
+Choose one of the releases of either (60fps or up to 278fps) to use. If your monitor is 60hz then choose the 60fps release. If your monitor is 120hz or more choose the uncapped fps release.
 
-Default for FPS uncap is 280 which is the max you can cap it down to whatever you like in the ini. YOU NEED TO DISABLE VSYNC FOR THE FPS TO BE UNCAPPED.
+# FOV
+You can choose in the d3d9.ini file either 1, 2 or 3 each will zoom the FOV/camera in the game out slightly more. Choose which option you want to use, and it will be reflected in the game, 0 is off or original game cameras FOV.
 
-Default for resolution is 2 (1920 x 1080)
+# Issues/Problems
+If you have any issues, with the fixes then please go to discord for help linked below. https://discord.gg/eVJ7sQH7Cc
 
-For aspect ratio in this game you need to set two settings if you go above 16:10 which is explained in the ini 
+# Credits
+Credit to Elisha Riedlinger for the base wrapper and 13 AG.
 
-Default aspect ratio is 0 which is (16:9)   
+Brought to you by Fix Enhancers - https://fixenhancers.wixsite.com/fix-enhancers
 
-The game will start with the origional FOV and you can toggle it to the FOV you select here by pressing the hotkey "9" on your keyboard (not the numpad) and it will toggle between origional and the value in the ini that you choose to zoom out to.
-
-the three folders with (noFOVtoggle) are the same as the others but you wont have a toggle for FOV in game you will just choose which fov you want in d3d9.ini and it will always be that FOV anytime you open the game
-
-If you have any issues please go to discord for help 
-
-https://discord.gg/eVJ7sQH7Cc
-
-brought to you by Fix Enhancers 
-
-https://fixenhancers.wixsite.com/fix-enhancers
-
-credit to Elisha Riedlinger for the base wrapper and 13 AG.
-
-Team: 
-
+Team:
 Chip, JokerAlex21, Blankname.
